@@ -36,6 +36,14 @@ export const urlController = {
         const error = new Error(RESPONSE_MESSAGES.NOT_FOUND("URL"));
         httpError(next, error, req, 404);
       }
+
+      if (!url.isActive) {
+        const error = new Error(RESPONSE_MESSAGES.URL_EXPIRED);
+        httpError(next, error, req, 404);
+      }
+
+      await URLServices.updateViewCount(url._id);
+
       res.redirect(url.originalURL);
     } catch (error) {
       httpError(next, error, req, 500);

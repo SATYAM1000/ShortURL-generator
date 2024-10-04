@@ -7,4 +7,7 @@ export const URLServices = {
   getOriginalURLByCode: (shortURLCode) => {
     return Url.findOne({ shortURLCode });
   },
+  updateViewCount: (id) => {
+    return Url.findByIdAndUpdate(id, { $inc: { clickCount: 1 } });
+  },
 };
