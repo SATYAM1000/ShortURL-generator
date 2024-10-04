@@ -6,4 +6,5 @@ export const RESPONSE_MESSAGES = {
   TOO_MANY_REQUESTS: (entity) => `${entity} request limit exceeded`,
   SOMETHING_WENT_WRONG: "Something went wrong",
   UNAUTHORIZED: "Unauthorized request",
+  URL_EXPIRED: "URL expired",
 };
