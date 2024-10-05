@@ -3,7 +3,7 @@ import rateLimit from "express-rate-limit";
 import { httpError } from "./error.util.js";
 
 export const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 15 * 60 * 50,
   max: 1000,
   handler: (req, res, next) => {
     try {

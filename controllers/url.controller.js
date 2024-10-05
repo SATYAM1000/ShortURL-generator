@@ -19,7 +19,6 @@ export const urlController = {
       const payload = {
         originalURL: value.originalURL,
         shortURLCode: nanoid(8),
-        //TODO: add user id
       };
 
       const url = await URLServices.createURL(payload);
