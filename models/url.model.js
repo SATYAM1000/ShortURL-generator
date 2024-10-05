@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
 
+function urlValidator(url) {
+  const regex = /^(https?:\/\/)([^\s$.?#].[^\s]*)$/i; // Improved regex
+  return regex.test(url);
+}
+
 const urlSchema = new mongoose.Schema(
   {
     originalURL: {
@@ -36,8 +41,3 @@ const urlSchema = new mongoose.Schema(
 );
 
 export const Url = mongoose.model("Url", urlSchema);
-
-function urlValidator(url) {
-  const regex = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,6}\/?/;
-  return regex.test(url);
-}
