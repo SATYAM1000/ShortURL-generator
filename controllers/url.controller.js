@@ -44,8 +44,7 @@ export const urlController = {
       }
 
       await URLServices.updateViewCount(url._id);
-      await redisClient.set(shortURLCode, url.originalURL);
-
+      await redisClient.set(shortURLCode, url.originalURL, "EX", 3600);
       res.redirect(url.originalURL);
     } catch (error) {
       httpError(next, error, req, 500);
