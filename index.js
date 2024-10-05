@@ -15,6 +15,8 @@ import { httpError } from "./utils/error.util.js";
 import { globalErrorHandler } from "./middlewares/global-error.middleware.js";
 import { connectToDB } from "./config/db.config.js";
 import { initializeRedisClient } from "./config/redis.js";
+import { redisMiddlewares } from "./middlewares/redis.middleware.js";
+import { urlController } from "./controllers/url.controller.js";
 
 const app = express();
 
@@ -29,7 +31,7 @@ app.use(compress());
 app.use(mongoSanitize());
 app.use(limiter);
 
-app.get("/", async(req, res) => {
+app.get("/", async (req, res) => {
   try {
     res.send("Hello World 😊");
   } catch (error) {
@@ -39,6 +41,11 @@ app.get("/", async(req, res) => {
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/url", urlRoute);
+app.get(
+  "/:shortURLCode",
+  redisMiddlewares.getShortURLCode,
+  urlController.redirectShortURL
+);
 
 // 404 error handler
 
