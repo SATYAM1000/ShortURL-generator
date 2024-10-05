@@ -38,5 +38,6 @@ const urlSchema = new mongoose.Schema(
 export const Url = mongoose.model("Url", urlSchema);
 
 function urlValidator(url) {
-  return /^(ftp|http|https):\/\/[^ "]+$/.test(url);
+  const regex = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,6}\/?/;
+  return regex.test(url);
 }
