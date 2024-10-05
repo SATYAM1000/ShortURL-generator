@@ -29,6 +29,14 @@ app.use(compress());
 app.use(mongoSanitize());
 app.use(limiter);
 
+app.get("/", async(req, res) => {
+  try {
+    res.send("Hello World 😊");
+  } catch (error) {
+    httpError(res, error, req, 500);
+  }
+});
+
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/url", urlRoute);
 
