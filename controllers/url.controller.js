@@ -5,6 +5,7 @@ import { validateSchema } from "../validations/url.validation.js";
 import { URLServices } from "../services/url.service.js";
 import { httpResponse } from "../utils/response.util.js";
 import { RESPONSE_MESSAGES } from "../constants/response-messages.constant.js";
+import { redisClient } from "../index.js";
 
 export const urlController = {
   createShortURL: async (req, res, next) => {
@@ -43,6 +44,7 @@ export const urlController = {
       }
 
       await URLServices.updateViewCount(url._id);
+      await redisClient.set(shortURLCode, url.originalURL);
 
       res.redirect(url.originalURL);
     } catch (error) {

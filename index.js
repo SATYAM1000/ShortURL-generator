@@ -14,8 +14,11 @@ import { RESPONSE_MESSAGES } from "./constants/response-messages.constant.js";
 import { httpError } from "./utils/error.util.js";
 import { globalErrorHandler } from "./middlewares/global-error.middleware.js";
 import { connectToDB } from "./config/db.config.js";
+import { initializeRedisClient } from "./config/redis.js";
 
 const app = express();
+
+export const redisClient = await initializeRedisClient();
 
 app.set("trust proxy", 1);
 app.use(cors(corsOptions));
