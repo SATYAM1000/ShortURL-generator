@@ -4,7 +4,7 @@ import { httpError } from "./error.util.js";
 
 export const rateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 50000,
+  max: 50,
   handler: (req, _res, next) => {
     try {
       throw new Error(RESPONSE_MESSAGES.TOO_MANY_REQUESTS("Resource"));
