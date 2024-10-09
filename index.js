@@ -9,7 +9,7 @@ import { config } from "./config/env.config.js";
 import { userRoute } from "./routes/user.route.js";
 import { urlRoute } from "./routes/url.route.js";
 import { corsOptions } from "./utils/cors.util.js";
-import { limiter } from "./utils/rate-limiter.util.js";
+// import { limiter } from "./utils/rate-limiter.util.js";
 import { RESPONSE_MESSAGES } from "./constants/response-messages.constant.js";
 import { httpError } from "./utils/error.util.js";
 import { globalErrorHandler } from "./middlewares/global-error.middleware.js";
