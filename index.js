@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(hpp());
 app.use(compress());
 app.use(mongoSanitize());
-app.use(limiter);
+// app.use(limiter);
 
 app.get("/", async (req, res) => {
   try {
